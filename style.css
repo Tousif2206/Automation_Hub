@@ -1,0 +1,40 @@
+/* General utility */
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out forwards;
+}
+
+/* For draggable items */
+.dragging {
+    opacity: 0.5;
+    background-color: #3b82f6 !important;
+    color: white;
+}
