@@ -25,37 +25,83 @@
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
-  <body class="bg-slate-50 dark:bg-slate-900">
-    <div id="app-container" class="flex h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-      <!-- Sidebar is rendered by JS -->
-      <aside id="sidebar-container" class="fixed top-0 left-0 z-30 w-64 h-full bg-white dark:bg-slate-800 shadow-xl transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 md:relative"></aside>
+  <body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans">
+    <div id="app-container" class="min-h-screen flex flex-col">
+      <!-- Sticky Header -->
+      <header id="main-header" class="bg-white dark:bg-slate-800 shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#/" class="text-2xl font-bold text-primary-600 dark:text-primary-400">Automation Hub</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="desktop-nav" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Desktop navigation links will be injected here -->
+                    </div>
+                </div>
+                 <div class="hidden md:flex items-center ml-4">
+                    <div id="theme-toggle-desktop-container"></div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <div id="theme-toggle-mobile-container" class="mr-2"></div>
+                    <button id="mobile-menu-button" type="button" class="bg-slate-100 dark:bg-slate-700 inline-flex items-center justify-center p-2 rounded-md text-slate-500 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="mobile-menu-open-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg id="mobile-menu-close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div id="mobile-nav" class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <!-- Mobile navigation links will be injected here -->
+            </div>
+        </div>
+      </header>
 
-      <div class="flex-1 flex flex-col overflow-hidden">
-          <!-- Mobile Header -->
-          <header id="mobile-header" class="flex justify-between items-center p-4 bg-white dark:bg-slate-800 shadow-md md:hidden">
-              <h1 class="text-xl font-bold text-primary-600 dark:text-primary-400">Automation Hub</h1>
-              <div class="flex items-center gap-2">
-                  <div id="theme-toggle-mobile-container"></div>
-                  <button id="sidebar-open-button" class="text-slate-500 dark:text-slate-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
-                  </button>
-                   <button id="sidebar-close-button" class="text-slate-500 dark:text-slate-400 hidden">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                   </button>
-              </div>
-          </header>
+      <!-- Main Content -->
+      <main id="app-content" class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8"></main>
 
-          <!-- Desktop Header -->
-          <header class="hidden md:flex justify-end items-center p-4 border-b border-slate-200 dark:border-slate-700">
-              <div id="theme-toggle-desktop-container"></div>
-          </header>
-          
-          <main id="app-content" class="flex-1 overflow-x-hidden overflow-y-auto"></main>
-      </div>
-
-      <div id="sidebar-overlay" class="fixed inset-0 bg-black/30 z-20 md:hidden hidden"></div>
+      <!-- Footer -->
+       <footer class="bg-white dark:bg-slate-800 shadow-inner py-8">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-600 dark:text-slate-400">
+                <div data-testid="footer-links" class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800 dark:text-slate-200">Navigation</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#/ecommerce" class="hover:text-primary-500 transition-colors">E-Commerce</a></li>
+                            <li><a href="#/hotel" class="hover:text-primary-500 transition-colors">Hotel Booking</a></li>
+                            <li><a href="#/movies" class="hover:text-primary-500 transition-colors">Movie Tickets</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800 dark:text-slate-200">Link Testing</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#/" data-testid="footer-working-link" class="hover:text-primary-500 transition-colors">Working Link</a></li>
+                            <li><a href="/404-page" data-testid="footer-broken-link" class="hover:text-primary-500 transition-colors">Broken Link (404)</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800 dark:text-slate-200">Contact</h4>
+                        <ul class="space-y-2">
+                            <li>Email: contact@autohub.test</li>
+                            <li>Phone: (555) 123-4567</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800 dark:text-slate-200">Follow Us</h4>
+                        <div class="flex justify-center space-x-4">
+                           <a href="#/" data-testid="social-facebook" class="hover:text-primary-500 transition-colors">Facebook</a>
+                           <a href="#/" data-testid="social-twitter" class="hover:text-primary-500 transition-colors">Twitter</a>
+                           <a href="#/" data-testid="social-youtube" class="hover:text-primary-500 transition-colors">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+                 <p class="mt-8 text-sm">&copy; 2024 Automation Practice Hub. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
-    <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2"></div>
+    <div id="toast-container" class="fixed top-20 right-5 z-50 space-y-2"></div>
     <script src="script.js"></script>
   </body>
 </html>
